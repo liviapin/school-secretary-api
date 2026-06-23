@@ -1,45 +1,32 @@
-Iniciando a Aplicação
+# School Secretary API
 
-Para subir todos os serviços necessários (API, banco de dados, etc.), utilize o Docker Compose com o seguinte comando:
-```
+RESTful API built with .NET Core for managing a school secretary system. Handles students, classes, and enrollments with full CRUD operations.
+
+## Tech Stack
+
+- **.NET Core** with Entity Framework Core
+- **PostgreSQL** (via Docker)
+- **JWT** authentication
+- **Swagger UI** for API documentation
+
+## Getting Started
+
+```bash
 docker compose up
 ```
-Usuário Administrador Padrão
 
-Após aplicar a migration inicial, será criado automaticamente um usuário administrador padrão, útil para testes e validações durante o desenvolvimento da aplicação.
+A default admin account is created automatically on first run:
 
-Credenciais:
+| Field | Value |
+|-------|-------|
+| Email | `admin@admin.com` |
+| Password | `Senha@123` |
 
-Email: admin@admin.com
+### Authenticating in Swagger
 
-Senha: Senha@123
+1. Open Swagger UI at `http://localhost:8080/swagger`
+2. `POST /api/auth/login` with the credentials above
+3. Copy the JWT from the response
+4. Click **Authorize** and enter: `Bearer <your_token>`
 
-Acesse o Swagger UI:
-http://localhost:8080/swagger
-
-Acesse a rota de login via POST:
-
-POST /api/auth/login
-
-Corpo da requisição (JSON):
-
-```json
-{
-  "email": "admin@admin.com",
-  "senha": "Senha@123"
-}
-```
-
-Copie o TOKEN da resposta, para utilizar no próximo passo.
-
-Clique em "Authorize".
-
-No campo exibido, informe o token JWT da seguinte forma:
-
-Bearer SEU_TOKEN_AQUI
-
-Após autorizar, todas as rotas protegidas estarão disponíveis para testes diretamente no Swagger.
-
-Script de Criação do Banco de Dados (dump.sql)
-
-Não foi necessário adicionar manualmente um script de criação do banco de dados, a migration que inicializa o banco está sendo executada na inicialização da aplicação.
+All protected routes are now available for testing.
